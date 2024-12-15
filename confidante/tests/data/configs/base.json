@@ -1,0 +1,12 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "admin",
+    "password": "newsecret"
+  },
+  "features": {
+    "enable_signup": true,
+    "max_users": 100
+  }
+}

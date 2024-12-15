@@ -1,0 +1,2 @@
+class ConfidanteError(Exception):
+    pass

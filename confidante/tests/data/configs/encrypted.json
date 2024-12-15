@@ -1,0 +1,9 @@
+{
+  "credentials": {
+    "api_key": "ENC::gAAAAABlZzI...",
+    "api_secret": "ENC::gAAAAABlZzJ..."
+  },
+  "logging": {
+    "level": "info"
+  }
+}
