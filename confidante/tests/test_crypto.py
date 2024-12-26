@@ -18,10 +18,12 @@ def test_cli_encrypt_key(tmp_path, symmetric_key, monkeypatch):
     config_path.write_text(json.dumps(config_data), encoding="utf-8")
 
     monkeypatch.setenv("CONFIDANTE_KEY", symmetric_key)
+    print("AV#01: ",symmetric_key, config_data)
     runner = CliRunner()
-    print(config_path)
+    print("AV#02: ",config_path)
     # Encrypt secret using CLI
-    result = runner.invoke(main, ["encrypt_key", str(config_path), "secret", "newsecret"])
+    result = runner.invoke(main, ["encrypt-key", "--key", symmetric_key, str(config_path), "secret", "newsecret"])
+    print("AV#03: ",result.output)
     assert result.exit_code == 0
     # Check file now has ENC::
     updated = json.loads(config_path.read_text(encoding="utf-8"))

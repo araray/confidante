@@ -1,4 +1,5 @@
-from typing import Any, Union
+
+from typing import Any
 
 def tidy_data(data: Any) -> Any:
     # For JSON, just ensure sorted keys
