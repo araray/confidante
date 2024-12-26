@@ -13,12 +13,13 @@ def main():
 @main.command()
 @click.argument('path', type=click.Path(exists=True))
 @click.option('--decrypted', is_flag=True, help="Attempt to decrypt values")
-def load(path, decrypted):
+@click.option('--key', help='Symmetric key for decryption')
+def load(path, decrypted, key):
     """Load and print configuration."""
     try:
         config = Confidante.load(path)
         if decrypted:
-            config.unlock(prompt=True)
+            config.unlock(key if key else None, prompt=True)
         click.echo(json.dumps(config.config._data, indent=2))
     except ConfidanteError as e:
         click.echo(str(e), err=True)

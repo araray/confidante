@@ -38,8 +38,10 @@ def test_integration_unlock_and_load(encrypted_config, symmetric_key):
 
 def test_cli_load_decrypted(encrypted_config, symmetric_key, monkeypatch):
     monkeypatch.setenv("CONFIDANTE_KEY", symmetric_key)
+    print("AV#01: ", os.getenv("CONFIDANTE_KEY"))
     runner = CliRunner()
     result = runner.invoke(main, ["load", encrypted_config, "--decrypted"])
+    print("AV#02: ", result.output)
     assert result.exit_code == 0
     assert "supersecret" in result.output
 

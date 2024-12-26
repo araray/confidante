@@ -58,11 +58,11 @@ class Confidante:
             backend = AsymmetricCrypto(private_key_path=private_key_path, passphrase=passphrase)
         else:
             # Symmetric mode
-            if key is None and prompt:
-                key = getpass.getpass("Enter decryption key: ")
             if key is None:
                 key = os.environ.get("CONFIDANTE_KEY")
-            if key is None:
+            elif key is None and prompt:
+                key = getpass.getpass("Enter decryption key: ")
+            elif key is None:
                 raise ConfidanteError("No key provided for symmetric decryption.")
             backend = SymmetricCrypto(key)
 
